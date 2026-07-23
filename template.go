@@ -38,9 +38,6 @@ VERSION:
 
 var copyrightTemplate = `{{wrap .Copyright 3}}`
 
-// RootCommandHelpTemplate is the text template for the Default help topic.
-// cli.go uses text/template to render templates. You can
-// render custom help text by setting this variable.
 var RootCommandHelpTemplate = `NAME:
    {{template "helpNameTemplate" .}}
 
@@ -66,9 +63,6 @@ COPYRIGHT:
    {{template "copyrightTemplate" .}}{{end}}
 `
 
-// CommandHelpTemplate is the text template for the command help topic.
-// cli.go uses text/template to render templates. You can
-// render custom help text by setting this variable.
 var CommandHelpTemplate = `NAME:
    {{template "helpNameTemplate" .}}
 
@@ -88,9 +82,6 @@ OPTIONS:{{template "visibleFlagTemplate" .}}{{end}}{{if .VisiblePersistentFlags}
 GLOBAL OPTIONS:{{template "visiblePersistentFlagTemplate" .}}{{end}}
 `
 
-// SubcommandHelpTemplate is the text template for the subcommand help topic.
-// cli.go uses text/template to render templates. You can
-// render custom help text by setting this variable.
 var SubcommandHelpTemplate = `NAME:
    {{template "helpNameTemplate" .}}
 

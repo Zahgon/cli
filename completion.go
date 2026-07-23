@@ -1,16 +1,13 @@
 package cli
 
 import (
-	"context"
 	"embed"
 	"fmt"
-	"strings"
 )
 
 const (
 	completionCommandName = "completion"
 
-	// This flag is supposed to only be used by the completion script itself to generate completions on the fly.
 	completionFlag = "--generate-shell-completion"
 )
 
@@ -20,10 +17,6 @@ var (
 	//go:embed autocomplete
 	autoCompleteFS embed.FS
 
-	// completionShells defines the order in which the shell completion
-	// subcommands appear in help output. Iterating shellCompletions directly
-	// would use Go's randomized map order, making the listing nondeterministic.
-	// Keep this in sync with shellCompletions.
 	completionShells = []string{"bash", "zsh", "fish", "pwsh"}
 
 	shellCompletions = map[string]renderCompletion{
@@ -62,37 +55,9 @@ $COMMAND completion fish > ~/.config/fish/completions/$COMMAND.fish
 Output the script to path/to/autocomplete/$COMMAND.ps1 and run it.
 `
 
-func buildCompletionCommand(appName string) *Command {
-	cmd := &Command{
-		Name:                completionCommandName,
-		Hidden:              true,
-		Usage:               "Output shell completion script for bash, zsh, fish, or Powershell",
-		Description:         strings.ReplaceAll(completionDescription, "$COMMAND", appName),
-		isCompletionCommand: true,
-	}
-
-	for _, shell := range completionShells {
-		cmd.Commands = append(cmd.Commands, buildShellCompletionSubcommand(shell, shellCompletions[shell], appName))
-	}
-
-	return cmd
-}
+func buildCompletionCommand(appName string) *Command { _ = "STUB: not implemented"; return nil }
 
 func buildShellCompletionSubcommand(shell string, render renderCompletion, appName string) *Command {
-	return &Command{
-		Name:                shell,
-		Usage:               fmt.Sprintf("Output %s completion script", shell),
-		isCompletionCommand: true,
-		Action: func(ctx context.Context, cmd *Command) error {
-			completionScript, err := render(cmd, appName)
-			if err != nil {
-				return Exit(err, 1)
-			}
-			_, err = cmd.Root().Writer.Write([]byte(completionScript))
-			if err != nil {
-				return Exit(err, 1)
-			}
-			return nil
-		},
-	}
+	_ = "STUB: not implemented"
+	return nil
 }

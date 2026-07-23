@@ -1,13 +1,5 @@
 package cli
 
-import (
-	"encoding/json"
-	"fmt"
-	"reflect"
-	"strings"
-)
-
-// SliceBase wraps []T to satisfy flag.Value
 type SliceBase[T any, C any, VC ValueCreator[T, C]] struct {
 	slice                 *[]T
 	hasBeenSet            bool
@@ -17,99 +9,28 @@ type SliceBase[T any, C any, VC ValueCreator[T, C]] struct {
 }
 
 func (i SliceBase[T, C, VC]) Create(val []T, p *[]T, c C) Value {
-	*p = []T{}
-	*p = append(*p, val...)
-	var t T
-	np := new(T)
-	var vc VC
-	return &SliceBase[T, C, VC]{
-		slice: p,
-		value: vc.Create(t, np, c),
-	}
+	_ = "STUB: not implemented"
+	return *new(Value)
 }
 
-// NewSliceBase makes a *SliceBase with default values
 func NewSliceBase[T any, C any, VC ValueCreator[T, C]](defaults ...T) *SliceBase[T, C, VC] {
-	return &SliceBase[T, C, VC]{
-		slice: &defaults,
-	}
-}
-
-// configuration of slicing
-func (i *SliceBase[T, C, VC]) setMultiValueParsingConfig(c multiValueParsingConfig) {
-	i.disableSliceSeparator = c.DisableSliceFlagSeparator
-	i.sliceSeparator = c.SliceFlagSeparator
-	tracef("set slice parsing config - slice separator '%s', disable separator:%v", i.sliceSeparator, i.disableSliceSeparator)
-}
-
-// Set parses the value and appends it to the list of values
-func (i *SliceBase[T, C, VC]) Set(value string) error {
-	if !i.hasBeenSet {
-		*i.slice = []T{}
-		i.hasBeenSet = true
-	}
-
-	if strings.HasPrefix(value, slPfx) {
-		// Deserializing assumes overwrite
-		_ = json.Unmarshal([]byte(strings.Replace(value, slPfx, "", 1)), &i.slice)
-		i.hasBeenSet = true
-		return nil
-	}
-
-	trimSpace := true
-	// hack. How do we know if we should trim spaces?
-	// it makes sense only for string slice flags which have
-	// an option to not trim spaces. So by default we trim spaces
-	// otherwise we let the underlying value type handle it.
-	var t T
-	if reflect.TypeOf(t).Kind() == reflect.String {
-		trimSpace = false
-	}
-
-	tracef("splitting slice value '%s', separator '%s', disable separator:%v", value, i.sliceSeparator, i.disableSliceSeparator)
-	for _, s := range flagSplitMultiValues(value, i.sliceSeparator, i.disableSliceSeparator) {
-		if trimSpace {
-			s = strings.TrimSpace(s)
-		}
-		if err := i.value.Set(s); err != nil {
-			return err
-		}
-		*i.slice = append(*i.slice, i.value.Get().(T))
-	}
-
+	_ = "STUB: not implemented"
 	return nil
 }
 
-// String returns a readable representation of this value (for usage defaults)
-func (i *SliceBase[T, C, VC]) String() string {
-	var defaultVals []string
-	var v VC
-	for _, s := range *i.slice {
-		defaultVals = append(defaultVals, v.ToString(s))
-	}
-	return strings.Join(defaultVals, ", ")
+func (i *SliceBase[T, C, VC]) setMultiValueParsingConfig(c multiValueParsingConfig) {
+	_ = "STUB: not implemented"
+	return
 }
 
-// Serialize allows SliceBase to fulfill Serializer
-func (i *SliceBase[T, C, VC]) Serialize() string {
-	jsonBytes, _ := json.Marshal(i.slice)
-	return fmt.Sprintf("%s%s", slPfx, string(jsonBytes))
-}
+func (i *SliceBase[T, C, VC]) Set(value string) error { _ = "STUB: not implemented"; return nil }
 
-// Value returns the slice of values set by this flag
-func (i *SliceBase[T, C, VC]) Value() []T {
-	if i.slice == nil {
-		return nil
-	}
-	return *i.slice
-}
+func (i *SliceBase[T, C, VC]) String() string { _ = "STUB: not implemented"; return "" }
 
-// Get returns the slice of values set by this flag
-func (i *SliceBase[T, C, VC]) Get() any {
-	return *i.slice
-}
+func (i *SliceBase[T, C, VC]) Serialize() string { _ = "STUB: not implemented"; return "" }
 
-func (i SliceBase[T, C, VC]) ToString(t []T) string {
-	i.slice = &t
-	return i.String()
-}
+func (i *SliceBase[T, C, VC]) Value() []T { _ = "STUB: not implemented"; return nil }
+
+func (i *SliceBase[T, C, VC]) Get() any { _ = "STUB: not implemented"; return *new(any) }
+
+func (i SliceBase[T, C, VC]) ToString(t []T) string { _ = "STUB: not implemented"; return "" }
