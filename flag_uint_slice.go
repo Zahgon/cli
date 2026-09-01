@@ -21,43 +21,17 @@ var (
 	NewUint64Slice = NewSliceBase[uint64, IntegerConfig, uintValue[uint64]]
 )
 
-// UintSlice looks up the value of a local UintSliceFlag, returns
-// nil if not found
-func (cmd *Command) UintSlice(name string) []uint {
-	return getUintSlice[uint](cmd, name)
-}
+func (cmd *Command) UintSlice(name string) []uint { _ = "STUB: not implemented"; return nil }
 
-// Uint8Slice looks up the value of a local Uint8SliceFlag, returns
-// nil if not found
-func (cmd *Command) Uint8Slice(name string) []uint8 {
-	return getUintSlice[uint8](cmd, name)
-}
+func (cmd *Command) Uint8Slice(name string) []uint8 { _ = "STUB: not implemented"; return nil }
 
-// Uint16Slice looks up the value of a local Uint16SliceFlag, returns
-// nil if not found
-func (cmd *Command) Uint16Slice(name string) []uint16 {
-	return getUintSlice[uint16](cmd, name)
-}
+func (cmd *Command) Uint16Slice(name string) []uint16 { _ = "STUB: not implemented"; return nil }
 
-// Uint32Slice looks up the value of a local Uint32SliceFlag, returns
-// nil if not found
-func (cmd *Command) Uint32Slice(name string) []uint32 {
-	return getUintSlice[uint32](cmd, name)
-}
+func (cmd *Command) Uint32Slice(name string) []uint32 { _ = "STUB: not implemented"; return nil }
 
-// Uint64Slice looks up the value of a local Uint64SliceFlag, returns
-// nil if not found
-func (cmd *Command) Uint64Slice(name string) []uint64 {
-	return getUintSlice[uint64](cmd, name)
-}
+func (cmd *Command) Uint64Slice(name string) []uint64 { _ = "STUB: not implemented"; return nil }
 
 func getUintSlice[T uint | uint8 | uint16 | uint32 | uint64](cmd *Command, name string) []T {
-	if v, ok := cmd.Value(name).([]T); ok {
-		tracef("uint slice available for flag name %[1]q with value=%[2]v (cmd=%[3]q)", name, v, cmd.Name)
-
-		return v
-	}
-
-	tracef("uint slice NOT available for flag name %[1]q (cmd=%[2]q)", name, cmd.Name)
+	_ = "STUB: not implemented"
 	return nil
 }

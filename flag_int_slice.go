@@ -21,32 +21,12 @@ var (
 	NewInt64Slice = NewSliceBase[int64, IntegerConfig, intValue[int64]]
 )
 
-// IntSlice looks up the value of a local IntSliceFlag, returns
-// nil if not found
-func (cmd *Command) IntSlice(name string) []int {
-	return getNumberSlice[int](cmd, name)
-}
+func (cmd *Command) IntSlice(name string) []int { _ = "STUB: not implemented"; return nil }
 
-// Int8Slice looks up the value of a local Int8SliceFlag, returns
-// nil if not found
-func (cmd *Command) Int8Slice(name string) []int8 {
-	return getNumberSlice[int8](cmd, name)
-}
+func (cmd *Command) Int8Slice(name string) []int8 { _ = "STUB: not implemented"; return nil }
 
-// Int16Slice looks up the value of a local Int16SliceFlag, returns
-// nil if not found
-func (cmd *Command) Int16Slice(name string) []int16 {
-	return getNumberSlice[int16](cmd, name)
-}
+func (cmd *Command) Int16Slice(name string) []int16 { _ = "STUB: not implemented"; return nil }
 
-// Int32Slice looks up the value of a local Int32SliceFlag, returns
-// nil if not found
-func (cmd *Command) Int32Slice(name string) []int32 {
-	return getNumberSlice[int32](cmd, name)
-}
+func (cmd *Command) Int32Slice(name string) []int32 { _ = "STUB: not implemented"; return nil }
 
-// Int64Slice looks up the value of a local Int64SliceFlag, returns
-// nil if not found
-func (cmd *Command) Int64Slice(name string) []int64 {
-	return getNumberSlice[int64](cmd, name)
-}
+func (cmd *Command) Int64Slice(name string) []int64 { _ = "STUB: not implemented"; return nil }

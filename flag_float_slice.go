@@ -15,20 +15,8 @@ var (
 	NewFloat64Slice = NewSliceBase[float64, NoConfig, floatValue[float64]]
 )
 
-// FloatSlice looks up the value of a local FloatSliceFlag, returns
-// nil if not found
-func (cmd *Command) FloatSlice(name string) []float64 {
-	return getNumberSlice[float64](cmd, name)
-}
+func (cmd *Command) FloatSlice(name string) []float64 { _ = "STUB: not implemented"; return nil }
 
-// Float32Slice looks up the value of a local Float32Slice, returns
-// nil if not found
-func (cmd *Command) Float32Slice(name string) []float32 {
-	return getNumberSlice[float32](cmd, name)
-}
+func (cmd *Command) Float32Slice(name string) []float32 { _ = "STUB: not implemented"; return nil }
 
-// Float64Slice looks up the value of a local Float64SliceFlag, returns
-// nil if not found
-func (cmd *Command) Float64Slice(name string) []float64 {
-	return getNumberSlice[float64](cmd, name)
-}
+func (cmd *Command) Float64Slice(name string) []float64 { _ = "STUB: not implemented"; return nil }
